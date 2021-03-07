@@ -2,9 +2,6 @@ import React from 'react';
 import Card from './Card'
 
 const CardList = ({ robots }) => {
-    if (true) {
-        
-    }
     return (
         <div>
             {robots.map((user, i) => {
