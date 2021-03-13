@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox'
 import Scroll from '../components/Scroll'
@@ -23,25 +23,18 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-function App() {
-    const [robots, setRobots] = useState([])
-    const [searchField, setSearchField] = useState('')
+const App = (props) => {
+    const { onSearchChange, onRequestRobots, searchField, robots, isPending } = props
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(users => { setRobots(users) })
-    }, [])
-
-    const onSearchChange = (event) => {
-        setSearchField(event.target.value)
-    }
+        onRequestRobots()
+    }, [onRequestRobots])
 
     const filteredRobots = robots.filter(robot => {
         return robot.name.toLocaleLowerCase().includes(searchField.toLowerCase());
     })
 
-    return !robots.length ?
+    return isPending ?
         (
             <div className="tc">
                 <h1 className="f2">Loading...</h1>
