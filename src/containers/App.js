@@ -4,6 +4,7 @@ import SearchBox from '../components/SearchBox'
 import Scroll from '../components/Scroll'
 import Counter from '../components/Counter'
 import ErrorBoundry from '../components/ErrorBoundry'
+import Timer from '../components/Timer'
 import { setSearchField, requestRobots } from '../actions.js'
 import { useSelector, useDispatch } from 'react-redux'
 import './App.css'
@@ -41,6 +42,7 @@ const App = () => {
             <div className="tc">
                 <h1 className="f1">RoboFriends</h1>
                 <Counter />
+                <Timer initial="10" />
                 <SearchBox searchChange={onSearchChange} />
                 <Scroll>
                     <ErrorBoundry>
